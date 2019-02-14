@@ -20,14 +20,12 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-    Image IMAGE = new Image(getClass().getResourceAsStream("capitanAzul.png"), 500, 675, false, true); //1000 1255
-    Image image2 = new Image(getClass().getResourceAsStream("soldadoAzul.png"), 500, 675, false, true);
+    Image IMAGE = new Image(getClass().getResourceAsStream("asd.gif"), 500, 675, false, true); //1000 1255
+    Image image2 = new Image(getClass().getResourceAsStream("asd.gif"), 500, 675, false, true);
     ImageView imageView = new ImageView(IMAGE);
     ImageView imageView2 = new ImageView(image2);
-    Soldado soldado2 = new Soldado(imageView2);
-    Soldado soldado = new Soldado(imageView);
     private HashMap<KeyCode, Boolean> keys = new HashMap<>();
-    static VBox root = new VBox();
+    static Pane root = new Pane();
     static ArrayList<Soldado> soldados = new ArrayList<Soldado>();
     
     public static void main(String[] args) {
@@ -36,24 +34,10 @@ public class App extends Application {
     
     public void update() {
     	if (isPressed(KeyCode.RIGHT)) {
-    		soldado.animation.play();
-    		soldado.animation.setOffsetY(0);
-    		soldado.moveX(2);
-    	}
-    	else if(isPressed(KeyCode.DOWN)) {  		
-    		soldado.animation.play();
-    		soldado.animation.setOffsetY(145);//255
-    	}
-    	else if(isPressed(KeyCode.UP)) {
-    		soldado.animation.play();
-    		soldado.animation.setOffsetY(270);//510
-    	}
-    	else if(isPressed(KeyCode.LEFT)) {
-    		soldado.animation.play();
-    		soldado.animation.setOffsetY(422);//765
-    	}
-    	else {
-    		soldado.animation.stop();
+    		for(int i = 0; i<10; i++) {
+        		imageView.setTranslateX(imageView.getTranslateX()+1);;
+    		}
+    		
     	}
     }
     
@@ -63,14 +47,16 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{    	
-    	for(int i=0;i<10;i++) {
-    		Soldado sold = new Soldado(imageView2);
-    //		soldados.add(sold);
-    		root.getChildren().add(sold);
-    	}
+    //mirror	imageView.setScaleX(-1);
+    	imageView.setScaleX(0.5);
+    	imageView.setScaleY(0.5);
+    	imageView.setX(-100);
+    	imageView2.setScaleX(0.5);
+    	imageView2.setScaleY(0.5);
+    	imageView2.setX(10);
         root.setPrefSize(1366, 768);
-    //    root.getChildren().addAll(soldados);
-    //    root.getChildren().addAll(soldado2);
+        root.getChildren().addAll(imageView);
+        root.getChildren().addAll(imageView2);
         Scene scene = new Scene(root);
         scene.setOnKeyPressed(event->keys.put(event.getCode(),true));
         scene.setOnKeyReleased(event->{

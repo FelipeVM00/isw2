@@ -20,8 +20,8 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
-    Image IMAGE = new Image(getClass().getResourceAsStream("asd.gif"), 500, 675, false, true); //1000 1255
-    Image image2 = new Image(getClass().getResourceAsStream("asd.gif"), 500, 675, false, true);
+    Image IMAGE = new Image("\\caballeroQuieto.gif", 1100, 800, false, true); //1000 1255
+    Image image2 = new Image("\\caballeroQuieto.gif", 500, 675, false, true);
     ImageView imageView = new ImageView(IMAGE);
     ImageView imageView2 = new ImageView(image2);
     private HashMap<KeyCode, Boolean> keys = new HashMap<>();
@@ -32,12 +32,26 @@ public class App extends Application {
         launch(args);
     }
     
-    public void update() {
+    public void update() throws InterruptedException {
     	if (isPressed(KeyCode.RIGHT)) {
+    		/*
     		for(int i = 0; i<10; i++) {
         		imageView.setTranslateX(imageView.getTranslateX()+1);;
     		}
-    		
+    		*/
+    		imageView.setImage(new Image("\\caballeroMov.gif", 500, 674, false, true));  	
+    		for(int i = 0; i<10; i++) {
+        		imageView.setTranslateX(imageView.getTranslateX()+1);;
+        		imageView.setTranslateY(imageView.getTranslateY()+1);;
+    		}
+    	}
+    	if (isPressed(KeyCode.LEFT)) {
+    		/*
+    		for(int i = 0; i<10; i++) {
+        		imageView.setTranslateX(imageView.getTranslateX()+1);;
+    		}
+    		*/
+    		imageView.setImage(new Image("\\caballeroQuieto.gif", 1100, 800, false, true));  		
     	}
     }
     
@@ -56,7 +70,7 @@ public class App extends Application {
     	imageView2.setX(10);
         root.setPrefSize(1366, 768);
         root.getChildren().addAll(imageView);
-        root.getChildren().addAll(imageView2);
+   //     root.getChildren().addAll(imageView2);
         Scene scene = new Scene(root);
         scene.setOnKeyPressed(event->keys.put(event.getCode(),true));
         scene.setOnKeyReleased(event->{
@@ -65,7 +79,11 @@ public class App extends Application {
         AnimationTimer timer = new AnimationTimer() {
         	@Override
         	public void handle(long now) {
-        		update();
+        		try {
+					update();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
         	}
         };
         timer.start();

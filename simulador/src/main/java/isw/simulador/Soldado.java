@@ -1,7 +1,10 @@
 package isw.simulador;
 
+import javafx.scene.image.ImageView;
+
 public abstract class Soldado implements Ataque{
 	
+	private ImageView sprite = new ImageView();
 	private String color;
 	private int puntosAtaque;
 	private int puntosResistencia;
@@ -41,4 +44,13 @@ public abstract class Soldado implements Ataque{
 	public boolean atacar(int puntos) {
 		return Ataque.atacar(puntos);
 	}
+	
+	public void setSprite(ImageView sprite) {
+		this.sprite = sprite;
+	}
+	
+	public ImageView getSprite() {
+		return this.sprite;
+	}
+
 }

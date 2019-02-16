@@ -1,6 +1,7 @@
 package isw.simulador;
 
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Capitan extends Soldado{
 	
@@ -9,7 +10,7 @@ public class Capitan extends Soldado{
 	private static final int puntosAtaqueEspecial = 80;
 
 	public Capitan() {
-		
+		this.setSprite(new ImageView(new Image("\\capitanQuieto.gif", 250, 337, false, true)));//500 675
 	}
 	
 	public static int getPuntosataque() {

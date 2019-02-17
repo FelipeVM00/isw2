@@ -9,17 +9,25 @@ public class Guerrero extends Soldado{
 	private static final int puntosResistencia = 80;
 	
 	public Guerrero() {
+		super();
+	}
+	public Guerrero(String color) {
+		super(color, puntosAtaque, puntosResistencia);
 		this.setSprite(new ImageView(new Image("\\guerreroQuieto.gif", 100, 200, false, true)));
 	}
 
-	public static int getPuntosataque() {
+	public int getPuntosataque() {
 		return puntosAtaque;
 	}
 
-	public static int getPuntosresistencia() {
+	public int getPuntosResistencia() {
 		return puntosResistencia;
 	}
 	
+	public boolean atacar(int puntos, Soldado soldado) {
+		this.setSprite(new ImageView(new Image("\\guerreroAtaque.gif", 100, 200, false, true)));
+		return Ataque.atacar(puntos, soldado);
+	}
 	
 
 }

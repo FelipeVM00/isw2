@@ -10,6 +10,10 @@ public class Capitan extends Soldado{
 	private static final int puntosAtaqueEspecial = 80;
 
 	public Capitan() {
+		super();
+	}
+	public Capitan(String color) {
+		super(color, puntosAtaque, puntosResistencia);
 		this.setSprite(new ImageView(new Image("\\capitanQuieto.gif", 250, 337, false, true)));//500 675
 	}
 	
@@ -25,8 +29,9 @@ public class Capitan extends Soldado{
 		return puntosAtaqueEspecial;
 	}
 	
-	public boolean atacarEspecial() {
-		return Ataque.atacar(puntosAtaqueEspecial);
+	public boolean atacar(int puntos, Soldado soldado) {
+		this.setSprite(new ImageView(new Image("\\capitanAtaque.gif", 250, 337, false, true)));
+		return Ataque.atacar(puntos, soldado);
 	}
-
+	
 }

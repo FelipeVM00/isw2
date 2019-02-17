@@ -4,15 +4,21 @@ import javafx.scene.image.ImageView;
 
 public abstract class Soldado implements Ataque{
 	
-	private ImageView sprite = new ImageView();
+	public ImageView sprite;
 	private String color;
 	private int puntosAtaque;
 	private int puntosResistencia;
 	
+	public Soldado(String color, int pA, int pR) {
+		this.setColor(color);
+		this.setPuntosAtaque(pA);
+		this.setPuntosResistencia(pR);
+	}
+	
 	public Soldado() {
 		
 	}
-	
+
 	public String getColor() {
 		return color;
 	}
@@ -41,8 +47,8 @@ public abstract class Soldado implements Ataque{
 		this.puntosResistencia -= puntos;
 	}
 	
-	public boolean atacar(int puntos) {
-		return Ataque.atacar(puntos);
+	public boolean atacar(int puntos, Soldado soldado) {
+		return Ataque.atacar(puntos, soldado);
 	}
 	
 	public void setSprite(ImageView sprite) {
@@ -51,6 +57,13 @@ public abstract class Soldado implements Ataque{
 	
 	public ImageView getSprite() {
 		return this.sprite;
+	}
+	
+	public void mover() { 	
+		for(int i = 0; i<10; i++) {
+    		sprite.setTranslateX(sprite.getTranslateX()+1);;
+    		sprite.setTranslateY(sprite.getTranslateY()+1);;
+		}
 	}
 
 }

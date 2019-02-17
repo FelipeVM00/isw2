@@ -27,7 +27,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class JuegoControlador implements Initializable{
+public class JuegoControlador{
 	
 	private boolean ejercitoCreado = false;
 	
@@ -185,14 +185,13 @@ public class JuegoControlador implements Initializable{
 	}
 
 	@FXML
-	void clickBtnIniciarPelea(ActionEvent event) {
+	void clickBtnIniciarPelea(ActionEvent event) throws InterruptedException {
 		boolean esTurno = false;
 		boolean peleaActiva = false;
-		int soldadoPrimero = 1 + (int) (Math.random() * (2 - 1 + 1));
-		soldado1 = ejercito1.seleccionarSoldado();
-		soldado2 = ejercito2.seleccionarSoldado();
-		
+		int soldadoPrimero = 1 + (int) (Math.random() * (2 - 1 + 1));	
 		if(ejercitoCreado) {		
+			soldado1 = ejercito1.seleccionarSoldado();
+			soldado2 = ejercito2.seleccionarSoldado();
 			if(ejercito1.getSoldados().isEmpty() || ejercito2.getSoldados().isEmpty()){
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle(null);
@@ -201,6 +200,7 @@ public class JuegoControlador implements Initializable{
 				alert.showAndWait();
 			}else {
 				do {
+					Thread.sleep(2000);
 					peleaActiva = true;
 					if(soldadoPrimero == 1) {
 						if(!esTurno) {		
@@ -209,7 +209,7 @@ public class JuegoControlador implements Initializable{
 							}			
 							else {	
 								soldadoGanador = soldado1;
-								pane.getChildren().remove(soldado2.sprite);
+								pane.getChildren().remove(soldado2.getSprite());
 								soldado2 = null;
 								textoTamañoEquipo2.setText(Integer.toString((Integer.parseInt(textoTamañoEquipo2.getText()) - 1)));
 								peleaActiva = false;
@@ -222,7 +222,7 @@ public class JuegoControlador implements Initializable{
 							}
 							else {
 								soldadoGanador = soldado2;
-								pane.getChildren().remove(soldado1.sprite);
+								pane.getChildren().remove(soldado1.getSprite());
 								soldado1 = null;
 								textoTamañoEquipo1.setText(Integer.toString((Integer.parseInt(textoTamañoEquipo1.getText()) - 1)));
 								peleaActiva = false;
@@ -236,7 +236,7 @@ public class JuegoControlador implements Initializable{
 							}			
 							else {				
 								soldadoGanador = soldado2;
-								pane.getChildren().remove(soldado1.sprite);
+								pane.getChildren().remove(soldado1.getSprite());
 								soldado1 = null;
 								textoTamañoEquipo1.setText(Integer.toString((Integer.parseInt(textoTamañoEquipo1.getText()) - 1)));
 								peleaActiva = false;
@@ -249,7 +249,7 @@ public class JuegoControlador implements Initializable{
 							}
 							else {
 								soldadoGanador = soldado1;
-								pane.getChildren().remove(soldado2.sprite);
+								pane.getChildren().remove(soldado2.getSprite());
 								soldado2 = null;
 								textoTamañoEquipo2.setText(Integer.toString((Integer.parseInt(textoTamañoEquipo2.getText()) - 1)));
 								peleaActiva = false;
@@ -288,10 +288,4 @@ public class JuegoControlador implements Initializable{
 		stage.show();
 	}
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		
-	}
-	    
 }

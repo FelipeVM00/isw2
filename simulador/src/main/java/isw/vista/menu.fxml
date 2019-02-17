@@ -16,7 +16,7 @@
          <children>
             <ImageView fitHeight="768.0" fitWidth="1366.0">
                <image>
-                  <Image url="@../../resources/pantallaInicio.png" />
+                  <Image url="@pantallaInicio.png" />
                </image>
             </ImageView>
          </children>

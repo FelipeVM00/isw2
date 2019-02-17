@@ -30,6 +30,7 @@ public class MenuControlador {
 
 	@FXML
 	void clickBtnSalir(ActionEvent event) {
-
+		Stage stage = (Stage) btnSalir.getScene().getWindow();
+		stage.close();
 	}
 }

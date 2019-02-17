@@ -12,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 
 public class JuegoControlador implements Initializable{
@@ -33,7 +35,11 @@ public class JuegoControlador implements Initializable{
 	@FXML
 	void clickBtnCrearEjer(ActionEvent event) {
 		if(ejercitoCreado) {
-			System.out.println("ya se creo un ejercito");
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle(null);
+			alert.setHeaderText(null);
+			alert.setContentText("¡¡ Ya se crearon los ejercitos !!");
+			alert.showAndWait();
 		}
 		else {
 			ejercitoCreado = true;
@@ -128,7 +134,7 @@ public class JuegoControlador implements Initializable{
 
 	@FXML
 	void clickBtnReiniciar(ActionEvent event) {
-
+		
 	}
 
 	@Override

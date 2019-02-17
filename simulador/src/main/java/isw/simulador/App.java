@@ -14,6 +14,9 @@ public class App extends Application {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.setResizable(false);
+		stage.setWidth(1366);
+		stage.setHeight(768);
+		stage.setTitle("Simulador de Batalla");
 		stage.show();   
 	}
 	public static void main( String[] args )
